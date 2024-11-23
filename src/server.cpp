@@ -1,4 +1,3 @@
-// src/server.cpp
 #include <iostream>
 #include <boost/asio.hpp>
 
@@ -22,9 +21,17 @@ int main() {
         acceptor.accept(socket);
         std::cout << "Client connected!" << std::endl;
 
-        // Send a "Hello, World!" message to the client
-        std::string message = "Hello, World!";
-        boost::asio::write(socket, boost::asio::buffer(message));
+        // Formulate a valid HTTP/1.1 response
+        std::string response = 
+            "HTTP/1.1 200 OK\r\n"
+            "Content-Type: text/plain\r\n"
+            "Content-Length: 13\r\n"
+            "Connection: close\r\n"
+            "\r\n"
+            "Hello, World!";
+
+        // Send the response to the client
+        boost::asio::write(socket, boost::asio::buffer(response));
 
         // Close the socket after communication
         socket.close();
