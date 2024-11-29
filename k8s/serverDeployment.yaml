@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: brunotex/server:latest # Push the Docker image to DockerHub or AWS ECR
+        image: brunotex/networkserver:latest # Push the Docker image to DockerHub or AWS ECR
         ports:
         - containerPort: 8080
 
